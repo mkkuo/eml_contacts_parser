@@ -1,36 +1,79 @@
-📩 EML Contacts Parser
-這是一個用於批次解析 .eml 郵件檔案中的聯絡人資訊的小工具，能自動提取寄件人、收件人、副本等欄位中的姓名與電子郵件地址，並匯出為結構化的 CSV 檔案。
+# 📩 EML Contacts Parser
 
-🚀 功能特色
-遞迴搜尋目錄下所有 .eml 檔案
-分析 From、To、Cc、Bcc 欄位
-自動清理重複的 Email + 欄位組合
-匯出聯絡人資訊至 contract.csv
+一個用來批次解析 `.eml` 郵件檔案的工具，可自動擷取收件人與寄件人等聯絡資訊，並匯出為 CSV 檔案。
 
-📂 專案結構
+---
+
+## ✨ 功能特色
+
+- 遞迴掃描資料夾中的 `.eml` 郵件檔案
+- 擷取 `From`、`To`、`Cc`、`Bcc` 欄位中的 Email 與顯示名稱
+- 自動去除重複聯絡人（Email + 來源欄位）
+- 匯出結果至 `contract.csv`
+
+---
+
+## 📁 專案結構
+
+```
 .
-├── eml_contacts_parser.py    # 主程式
-├── your_eml_folder/          # 放置 .eml 郵件檔案的資料夾
-└── contract.csv              # 執行後產生的聯絡人清單
+├── eml_contacts_parser.py     # 主程式
+├── example.eml                # 範例郵件（可選）
+├── contract.csv               # 產出結果
+└── README.md
+```
 
-🛠 使用方式
-安裝必要套件：
+---
+
+## ⚙️ 安裝方式
+
+先安裝必要套件：
+
+```bash
 pip install pandas tqdm
+```
 
-修改程式中 root_folder 的變數，指定為 .eml 檔案所在的資料夾：
+---
+
+## 🚀 使用方式
+
+1. 修改程式中的 `root_folder` 變數：
+
+```python
 root_folder = r"D:\your\eml\folder\path"
+```
 
-執行腳本：
+2. 執行腳本：
+
+```bash
 python eml_contacts_parser.py
-產生的 contract.csv 將會包含以下欄位：
+```
 
-DisplayName	Email	Source	EML_File
-John Smith	john@example.com	To	email_folder/mail1.eml
+3. 完成後會在原資料夾中生成 `contract.csv`，內容如下：
 
-📌 注意事項
-僅處理 .eml 檔案格式。
-請確保郵件中有標準格式的 From、To、Cc 或 Bcc 欄位。
-若有錯誤將會列出在命令列中，但不會中斷整體流程。
+| DisplayName | Email             | Source | EML_File               |
+|-------------|-------------------|--------|------------------------|
+| John Smith  | john@example.com  | To     | email_folder/mail1.eml |
 
-📄 授權
-本工具以 MIT 授權方式釋出，自由使用、修改與散布。
+---
+
+## 📝 注意事項
+
+- 僅處理 `.eml` 格式的郵件
+- 請確認信件含有標準格式的 `From`、`To`、`Cc` 或 `Bcc` 欄位
+- 錯誤訊息會顯示於命令列中，不會中斷流程
+
+---
+
+## 📦 套件清單 (`requirements.txt`)
+
+```
+pandas
+tqdm
+```
+
+---
+
+## 📄 授權
+
+本專案採用 MIT License 授權。
